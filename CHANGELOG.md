@@ -1,3 +1,9 @@
+8.0.1
+=====
+
+*   (improvement) Add conflict rule with all `becklyn/rad-bundle`.
+
+
 8.0.0
 =====
 

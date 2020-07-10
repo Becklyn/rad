@@ -28,6 +28,9 @@
         "symfony/validator": "^5.1",
         "twig/twig": "^3.0"
     },
+    "conflict": {
+        "becklyn/rad-bundle": "*"
+    },
     "require-dev": {
         "roave/security-advisories": "dev-master",
         "symfony/phpunit-bridge": "^5.1",
