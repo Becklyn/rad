@@ -41,7 +41,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-next": "7.x-dev"
+            "dev-next": "8.x-dev"
         }
     },
     "autoload": {
