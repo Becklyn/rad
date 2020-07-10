@@ -7,6 +7,8 @@
 *   Update all imported namespaces from `Becklyn\RadBundle\` to `Becklyn\Rad\`.
 *   The classes `BundleExtension` and `ConfigurableBundleExtension` have been removed. Please use the respective versions from `becklyn/rad-bundles` instead.
 *   `RadExceptionInterface` was removed, and `RadException` is now an interface. Just use `RadException` in your catch instead.
+*   The `EntityInterface` now includes the `isNew()` method. This method is automatically implemented by using the `IdTrait`.
+    If you are implementing the interface without using the trait, you need to implement the method.
 
 
 6.x to 7.0
