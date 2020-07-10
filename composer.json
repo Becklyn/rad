@@ -32,6 +32,7 @@
         "becklyn/rad-bundle": "*"
     },
     "require-dev": {
+        "algolia/search-bundle": "^4.1",
         "roave/security-advisories": "dev-master",
         "symfony/phpunit-bridge": "^5.1",
         "symfony/twig-bridge": "^5.1"
