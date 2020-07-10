@@ -1,4 +1,4 @@
-8.0.0 (unreleased)
+8.0.0
 =====
 
 *   (bc) Removed everything related to `EntityUsages`.
