@@ -27,4 +27,13 @@ class BecklynRadBundle extends Bundle
     {
         $container->addCompilerPass(new DoctrineExtensionsCompilerPass());
     }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getPath () : string
+    {
+        return \dirname(__DIR__);
+    }
 }

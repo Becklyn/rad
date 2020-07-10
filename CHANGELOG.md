@@ -1,3 +1,9 @@
+8.0.2
+=====
+
+*   (bug) Fix invalid bundle path.
+
+
 8.0.1
 =====
 
