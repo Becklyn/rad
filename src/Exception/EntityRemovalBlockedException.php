@@ -19,7 +19,7 @@ class EntityRemovalBlockedException extends \InvalidArgumentException implements
      */
     public function __construct ($entities, string $message, ?\Throwable $previous = null)
     {
-        parent::__construct($message, $previous);
+        parent::__construct($message, 0, $previous);
         $this->entities = \is_array($entities) ? $entities : [$entities];
     }
 

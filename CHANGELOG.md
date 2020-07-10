@@ -1,4 +1,10 @@
-8.0.0 (unreleased)
+8.0.1
+=====
+
+*   (improvement) Add conflict rule with all `becklyn/rad-bundle`.
+
+
+8.0.0
 =====
 
 *   (bc) Removed everything related to `EntityUsages`.
