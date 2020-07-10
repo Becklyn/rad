@@ -14,22 +14,20 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\MappedSuperclass()
  *
- * @UniqueEntity(fields={"tag"}, message="becklyn_rad.tag.duplicate")
+ * @UniqueEntity(fields={"tag"}, message="becklyn.rad.tag.duplicate")
  */
 abstract class TagEntity implements EntityInterface, TagInterface
 {
     use IdTrait;
 
     /**
-     * @var string|null
-     *
      * @ORM\Column(name="tag", type="string", length=254, unique=true)
      *
      * @Assert\NotNull()
      * @Assert\Length(max="254")
-     * @Assert\Regex(pattern="~^[a-z0-9\-_., ]+$~i", message="becklyn_rad.tag.tag.pattern")
+     * @Assert\Regex(pattern="~^[a-z0-9\-_., ]+$~i", message="becklyn.rad.tag.pattern")
      */
-    private $tag;
+    private ?string $tag = null;
 
 
     /**

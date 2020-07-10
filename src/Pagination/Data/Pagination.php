@@ -2,6 +2,8 @@
 
 namespace Becklyn\Rad\Pagination\Data;
 
+use Becklyn\Rad\Exception\InvalidPaginationException;
+
 /**
  * Generic pagination calculator.
  */
@@ -11,28 +13,11 @@ class Pagination
      * WARNING: this value is unsanitized. You should never use it except for when passing it to a pagination with a
      * different number of elements. Always use the getter, which returns the normalized value. Also use the normalized
      * getter in internal methods to have correct calculation.
-     *
-     * @var int
      */
-    private $currentPage;
-
-
-    /**
-     * @var int
-     */
-    private $numberOfItems;
-
-
-    /**
-     * @var int
-     */
-    private $perPage;
-
-
-    /**
-     * @var int
-     */
-    private $maxPage;
+    private int $currentPage;
+    private int $numberOfItems;
+    private int $perPage;
+    private int $maxPage;
 
 
     /**
@@ -41,12 +26,12 @@ class Pagination
     {
         if ($perPage <= 0)
         {
-            throw new \InvalidArgumentException("Pagination can only be created for at least 1 item per page.");
+            throw new InvalidPaginationException("Pagination can only be created for at least 1 item per page.");
         }
 
         if ($numberOfItems < 0)
         {
-            throw new \InvalidArgumentException("Pagination can only be created for a positive number of items");
+            throw new InvalidPaginationException("Pagination can only be created for a positive number of items");
         }
 
         $this->currentPage = $currentPage;
