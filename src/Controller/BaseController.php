@@ -3,6 +3,7 @@
 namespace Becklyn\Rad\Controller;
 
 use Becklyn\Rad\Ajax\AjaxResponseBuilder;
+use Becklyn\Rad\Exception\Controller\InvalidJsonRequestException;
 use Becklyn\Rad\Exception\EntityRemovalBlockedException;
 use Becklyn\Rad\Exception\LabeledEntityRemovalBlockedException;
 use Becklyn\Rad\Form\FormErrorMapper;
@@ -11,7 +12,6 @@ use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -88,22 +88,37 @@ abstract class BaseController extends AbstractController
     /**
      * Returns the parsed JSON formatted request body.
      */
-    protected function getJsonRequestData (Request $request) : array
+    protected function getJsonRequestData (Request $request, bool $isRequired = true) : array
     {
         if ("json" !== $request->getContentType())
         {
-            throw new HttpException(415, "Expected JSON request content type.");
+            if (!$isRequired)
+            {
+                return [];
+            }
+
+            throw new InvalidJsonRequestException("Expected JSON request content type.", 415);
+        }
+
+        $content = \trim((string) $request->getContent());
+
+        if ("" === $content)
+        {
+            if (!$isRequired)
+            {
+                return [];
+            }
         }
 
         try
         {
-            $data = \json_decode($request->getContent(), true, 512, \JSON_THROW_ON_ERROR);
+            $data = \json_decode($content, true, 512, \JSON_THROW_ON_ERROR);
 
             if (!\is_array($data))
             {
-                throw new HttpException(
-                    400,
-                    \sprintf("Invalid JSON structure received, expected list / key-value map, got %s", \gettype($data))
+                throw new InvalidJsonRequestException(
+                    \sprintf("Invalid JSON structure received, expected list / key-value map, got %s", \gettype($data)),
+                    400
                 );
             }
 
@@ -111,9 +126,9 @@ abstract class BaseController extends AbstractController
         }
         catch (\JsonException $e)
         {
-            throw new HttpException(
-                400,
+            throw new InvalidJsonRequestException(
                 "Invalid JSON received, error: {$e->getMessage()}",
+                400,
                 $e
             );
         }

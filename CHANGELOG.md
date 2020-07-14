@@ -1,3 +1,10 @@
+8.0.3
+=====
+
+*   (improvement) Add `$isRequired` flag to `BaseController::getJsonRequestData()`.
+*   (improvement) Throw proper named exceptions in `BaseController::getJsonRequestData()`.
+
+
 8.0.2
 =====
 
