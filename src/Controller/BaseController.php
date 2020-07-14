@@ -104,10 +104,7 @@ abstract class BaseController extends AbstractController
 
         if ("" === $content)
         {
-            if (!$isRequired)
-            {
-                return [];
-            }
+            return [];
         }
 
         try
