@@ -12,7 +12,7 @@ final class BecklynRadExtension extends BundleExtension implements PrependExtens
     /**
      * @inheritDoc
      */
-    public function prepend (ContainerBuilder $container)
+    public function prepend (ContainerBuilder $container) : void
     {
         $container->prependExtensionConfig("doctrine", [
             "dbal" => [
