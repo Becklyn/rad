@@ -2,6 +2,7 @@
 =====
 
 *   (improvement) Add key for IDE autocompletion in `DeferredTranslation::messages()`.
+*   (improvement) Add doctrine type by just prepending it to the symfony config.
 
 
 8.1.0
