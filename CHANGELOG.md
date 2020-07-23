@@ -1,3 +1,10 @@
+8.1.0
+=====
+
+*   (feature) Added new Doctrine Type `serialized`, that behaves exactly like the built-in `object` but base64 encode's the serialized data on top,
+    to prevent silent errors that can occur when creating or restoring a backup. See https://www.doctrine-project.org/projects/doctrine-dbal/en/2.10/reference/types.html#object for references.
+
+
 8.0.3
 =====
 
