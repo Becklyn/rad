@@ -50,6 +50,7 @@ class SerializedType extends Type
 
         try
         {
+            /** @noinspection UnserializeExploitsInspection */
             return \unserialize(\base64_decode($value, true));
         }
         finally
