@@ -3,6 +3,7 @@
 
 *   (improvement) Add key for IDE autocompletion in `DeferredTranslation::messages()`.
 *   (improvement) Add doctrine type by just prepending it to the symfony config.
+*   (internal) Disable inspections for new serialized type.
 
 
 8.1.0
