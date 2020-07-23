@@ -1,3 +1,9 @@
+8.1.1
+=====
+
+*   (improvement) Add key for IDE autocompletion in `DeferredTranslation::messages()`.
+
+
 8.1.0
 =====
 
