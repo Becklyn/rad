@@ -52,8 +52,15 @@ class SerializedType extends Type
 
         try
         {
+            $serializedValue = \base64_decode($value, true);
+
+            if (!\is_string($serializedValue))
+            {
+                throw ConversionException::conversionFailed($value, "serialized");
+            }
+
             /** @noinspection UnserializeExploitsInspection */
-            return \unserialize(\base64_decode($value, true));
+            return \unserialize($serializedValue);
         }
         finally
         {
