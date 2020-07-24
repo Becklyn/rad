@@ -1,3 +1,9 @@
+8.1.3
+=====
+
+*   (bug) Throw correct errors in Doctrine Type `serialized`.
+
+
 8.1.2
 =====
 
