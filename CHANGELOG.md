@@ -1,3 +1,9 @@
+8.1.2
+=====
+
+*   (bug) Fix return type of Doctrine Type `serialized`.
+
+
 8.1.1
 =====
 

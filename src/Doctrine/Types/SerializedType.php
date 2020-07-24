@@ -34,8 +34,10 @@ class SerializedType extends Type
 
     /**
      * @inheritDoc
+     *
+     * @return mixed
      */
-    public function convertToPHPValue ($value, AbstractPlatform $platform) : ?string
+    public function convertToPHPValue ($value, AbstractPlatform $platform)
     {
         if (null === $value)
         {
