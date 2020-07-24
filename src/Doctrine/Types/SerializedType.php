@@ -56,7 +56,7 @@ class SerializedType extends Type
 
             if (!\is_string($serializedValue))
             {
-                throw ConversionException::conversionFailed($value, "serialized");
+                throw ConversionException::conversionFailed($value, self::NAME);
             }
 
             /** @noinspection UnserializeExploitsInspection */
