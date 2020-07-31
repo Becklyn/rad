@@ -65,4 +65,14 @@ abstract class Model implements ModelInterface
         $this->entityManager->flush();
         return $this;
     }
+
+
+    /**
+     * Escapes the given string for usage in `LIKE "%{$var}"` scenarios.
+     * It escapes the wildcard characters.
+     */
+    protected function escapeStringForLike (string $value) : string
+    {
+        return \addcslashes($value, "%_");
+    }
 }

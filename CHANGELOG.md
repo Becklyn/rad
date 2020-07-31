@@ -1,3 +1,9 @@
+8.1.4
+=====
+
+*   (improvement) Add `Model::escapeStringForLike()`.
+
+
 8.1.3
 =====
 
