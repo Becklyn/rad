@@ -1,3 +1,9 @@
+8.1.5
+=====
+
+*   (bug) Fix `PaginatedList::createFromArray()` `numberOfItems` calculation.
+
+
 8.1.4
 =====
 
