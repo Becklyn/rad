@@ -46,7 +46,7 @@ class PaginatedList
 
         return new self(
             $list,
-            new Pagination(1, $itemsPerPage, $itemsPerPage)
+            new Pagination(1, $itemsPerPage, \count($list))
         );
     }
 }
