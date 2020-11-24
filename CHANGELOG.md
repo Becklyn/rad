@@ -1,3 +1,9 @@
+8.2.0
+=====
+
+*   (feature) Add new Twig filter `transDeferred`, which accepts either a `DeferredTranslation` or a `string` translation key.
+
+
 8.1.5
 =====
 
