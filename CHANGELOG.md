@@ -1,3 +1,9 @@
+8.3.0
+=====
+
+*   (feature) Add `LinkableHandlerInterface` that renders `LinkableInterface`s to a string.
+
+
 8.2.0
 =====
 
