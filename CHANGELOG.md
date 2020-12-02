@@ -1,3 +1,9 @@
+8.4.0
+=====
+
+*   (feature) Add new Twig function `linkable_url`, which accepts any `LinkableInterface` implementation.
+
+
 8.3.0
 =====
 

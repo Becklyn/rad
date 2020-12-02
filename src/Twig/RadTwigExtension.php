@@ -4,6 +4,8 @@ namespace Becklyn\Rad\Twig;
 
 use Becklyn\Rad\Exception\UnexpectedTypeException;
 use Becklyn\Rad\Html\DataContainer;
+use Becklyn\Rad\Route\LinkableHandlerInterface;
+use Becklyn\Rad\Route\LinkableInterface;
 use Becklyn\Rad\Translation\DeferredTranslation;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
@@ -14,15 +16,18 @@ class RadTwigExtension extends AbstractExtension
 {
     private DataContainer $dataContainer;
     private TranslatorInterface $translator;
+    private ?LinkableHandlerInterface $linkableHandler;
 
 
     public function __construct (
         DataContainer $dataContainer,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
+        ?LinkableHandlerInterface $linkableHandler = null
     )
     {
         $this->dataContainer = $dataContainer;
         $this->translator = $translator;
+        $this->linkableHandler = $linkableHandler;
     }
 
 
@@ -84,6 +89,29 @@ class RadTwigExtension extends AbstractExtension
 
 
     /**
+     * @param string|LinkableInterface|null $link
+     */
+    public function linkableUrl ($link) : ?string
+    {
+        if (null === $this->linkableHandler)
+        {
+            throw new \LogicException("Could not generate URL for LinkableInterface as no default LinkableHandlerInterface service has been registered.");
+        }
+
+        try
+        {
+            $this->linkableHandler->ensureValidLinkTarget($link);
+
+            return $this->linkableHandler->generateUrl($link);
+        }
+        catch (UnexpectedTypeException $e)
+        {
+            throw new \LogicException("Could not generate URL for LinkableInterface due to an error.", 500, $e);
+        }
+    }
+
+
+    /**
      * @inheritDoc
      */
     public function getFunctions () : array
@@ -93,6 +121,7 @@ class RadTwigExtension extends AbstractExtension
         return [
             new TwigFunction("classnames", [$this, "formatClassNames"]),
             new TwigFunction("data_container", [$this->dataContainer, "renderToHtml"], $safeHtml),
+            new TwigFunction("linkable_url", [$this, "linkableUrl"]),
         ];
     }
 
