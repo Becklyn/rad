@@ -1,3 +1,9 @@
+8.4.1
+=====
+
+*   (internal) Removed `RowAttrFormExtension` since it's in Symfony itself now and accidentally resets any third party extension's values.
+
+
 8.4.0
 =====
 
