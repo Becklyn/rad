@@ -1,3 +1,9 @@
+8.4.2
+=====
+
+*   (bug) Add missing call to `widget_container_attributes` block for `choice_widget_expanded` form theme template.
+
+
 8.4.1
 =====
 
