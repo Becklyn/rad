@@ -1,3 +1,10 @@
+8.5.0
+=====
+
+*   (feature) Add validation constraint `@ValidEmbeddable()`, which works exactly like `@Asserts\Valid()` but allows you to set `embeddedGroups()`,
+    which will be passed down to the validator when validating the embeddable.
+
+
 8.4.2
 =====
 
