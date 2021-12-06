@@ -5,17 +5,15 @@ namespace Becklyn\Rad;
 use Becklyn\Rad\DependencyInjection\BecklynRadExtension;
 use Becklyn\Rad\DependencyInjection\DoctrineExtensionsCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-/**
- *
- */
 class BecklynRadBundle extends Bundle
 {
     /**
      * @inheritDoc
      */
-    public function getContainerExtension ()
+    public function getContainerExtension () : ?ExtensionInterface
     {
         return new BecklynRadExtension($this);
     }

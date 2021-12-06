@@ -149,7 +149,7 @@ abstract class BaseController extends AbstractController
     /**
      * @inheritDoc
      */
-    public static function getSubscribedServices ()
+    public static function getSubscribedServices () : array
     {
         $services = parent::getSubscribedServices();
         $services[] = LoggerInterface::class;

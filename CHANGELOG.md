@@ -1,3 +1,10 @@
+8.5.1
+=====
+
+*   (improvement) Fix Symfony 5.4 deprecations + remove unused fields/services
+*   (internal) Upgrade dependencies.
+
+
 8.5.0
 =====
 

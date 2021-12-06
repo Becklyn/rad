@@ -13,7 +13,6 @@ use Symfony\Component\PropertyAccess\PropertyAccessor;
  */
 final class PropertiesSortableHandler
 {
-    private EntityRepository $repository;
     private SortableHandler $nested;
     /** @var string[] */
     private array $properties;
@@ -25,7 +24,6 @@ final class PropertiesSortableHandler
      */
     public function __construct (EntityRepository $repository, string ...$properties)
     {
-        $this->repository = $repository;
         $this->nested = new SortableHandler($repository);
         $this->properties = $properties;
         $this->accessor = PropertyAccess::createPropertyAccessor();
@@ -62,9 +60,7 @@ final class PropertiesSortableHandler
      */
     public function sortElementBefore (SortableEntityInterface $entity, ?SortableEntityInterface $before) : bool
     {
-        return $this->areCompatible($entity, $before)
-            ? $this->nested->sortElementBefore($entity, $before, $this->buildWhere($entity))
-            : false;
+        return $this->areCompatible($entity, $before) && $this->nested->sortElementBefore($entity, $before, $this->buildWhere($entity));
     }
 
 
