@@ -1,3 +1,12 @@
+8.6.0
+=====
+
+*   (feature) Add support for PHP 8.
+*   (internal) Fix Symfony deprecations.
+*   (improvement) Add missing property types and return types.
+*   (improvement) Add support for Symfony 6.
+
+
 8.5.1
 =====
 

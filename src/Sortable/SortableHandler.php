@@ -52,19 +52,17 @@ final class SortableHandler
             return false;
         }
 
+        /** @var SortableEntityInterface[] $entities */
         $entities = $this->getBaseQuery($where)
             ->select("t")
             ->addOrderBy("t.sortOrder", "asc")
             ->getQuery()
-            ->iterate();
+            ->toIterable();
 
         $index = 0;
 
-        foreach ($entities as $row)
+        foreach ($entities as $existing)
         {
-            /** @var SortableEntityInterface $existing */
-            $existing = $row[0];
-
             // skip entity to move, as it will be placed below
             if ($existing === $entity)
             {
@@ -102,11 +100,12 @@ final class SortableHandler
      */
     public function fixSortOrder (array $excludedElements, array $where = []) : void
     {
+        /** @var SortableEntityInterface[] $entities */
         $entities = $this->getBaseQuery($where)
             ->select("t")
             ->addOrderBy("t.sortOrder", "asc")
             ->getQuery()
-            ->iterate();
+            ->toIterable();
 
         $excludedIds = [];
 
@@ -117,11 +116,8 @@ final class SortableHandler
 
         $index = 0;
 
-        foreach ($entities as $row)
+        foreach ($entities as $entity)
         {
-            /** @var SortableEntityInterface $entity */
-            $entity = $row[0];
-
             if (\array_key_exists($entity->getId(), $excludedIds))
             {
                 continue;

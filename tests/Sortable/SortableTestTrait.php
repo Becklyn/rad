@@ -20,8 +20,8 @@ trait SortableTestTrait
     {
         return new class ($id, $sortOrder) implements SortableEntityInterface
         {
-            private $id;
-            private $sortOrder;
+            private int $id;
+            private ?int $sortOrder;
 
             public function __construct (int $id, ?int $sortOrder = null)
             {
@@ -65,8 +65,8 @@ trait SortableTestTrait
     {
         return new class ($id, $sortOrder, $a, $b, $c) implements SortableEntityInterface
         {
-            private $id;
-            private $sortOrder;
+            private int $id;
+            private ?int $sortOrder;
             private $a;
             private $b;
             private $c;
@@ -188,21 +188,12 @@ trait SortableTestTrait
 
         \usort(
             $entities,
-            function (SortableEntityInterface $left, SortableEntityInterface $right)
-            {
-                return $left->getSortOrder() - $right->getSortOrder();
-            }
+            static fn (SortableEntityInterface $left, SortableEntityInterface $right) => $left->getSortOrder() - $right->getSortOrder()
         );
 
-        $result = [];
-        foreach ($entities as $entity)
-        {
-            $result[] = [$entity];
-        }
-
         $query
-            ->method("iterate")
-            ->willReturn($result);
+            ->method("toIterable")
+            ->willReturn($entities);
 
         return [$repository, $queryBuilder];
     }

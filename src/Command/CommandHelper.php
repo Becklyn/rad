@@ -8,15 +8,10 @@ use Doctrine\Common\EventManager;
 
 class CommandHelper
 {
-    /** @var Profiler */
-    private $profiler;
-
-    /** @var EventManager */
-    private $eventManager;
+    private Profiler $profiler;
+    private EventManager $eventManager;
 
 
-    /**
-     */
     public function __construct (Profiler $profiler, EventManager $eventManager)
     {
         $this->profiler = $profiler;
@@ -25,7 +20,7 @@ class CommandHelper
 
 
     /**
-     * Helper for long running tasks
+     * Helper for long-running tasks
      */
     public function startLongRunningCommand () : void
     {

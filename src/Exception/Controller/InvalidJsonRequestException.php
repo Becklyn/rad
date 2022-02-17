@@ -21,7 +21,7 @@ final class InvalidJsonRequestException extends \RuntimeException implements Htt
     /**
      * @inheritDoc
      */
-    public function getStatusCode ()
+    public function getStatusCode () : int
     {
         return $this->statusCode;
     }
@@ -30,7 +30,7 @@ final class InvalidJsonRequestException extends \RuntimeException implements Htt
     /**
      * @inheritDoc
      */
-    public function getHeaders ()
+    public function getHeaders () : array
     {
         return [];
     }
