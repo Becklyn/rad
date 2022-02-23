@@ -1,7 +1,8 @@
-vNext
+8.6.1
 =====
 
 *   (internal) Replace CircleCI with GitHub Actions.
+*   (bug) Allow older versions of `scienta/doctrine-json-functions` to get back support for older `doctrine/dbal` versions.
 
 
 8.6.0
