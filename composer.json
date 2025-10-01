@@ -24,9 +24,9 @@
         "symfony/form": "^5.4.3 || ^6.0.3",
         "symfony/http-kernel": "^5.4.3 || ^6.0.4",
         "symfony/property-access": "^5.4.3 || ^6.0.3",
-        "symfony/translation-contracts": "^v2.5.0 || ^v3.0.0",
+        "symfony/translation-contracts": "^2.5.0 || ^3.0.0",
         "symfony/validator": "^5.4.3 || ^6.0.3",
-        "twig/twig": "^v3.3.4"
+        "twig/twig": "^3.3.4"
     },
     "require-dev": {
         "algolia/search-bundle": "^5.2.1 || ^6.0.0",
