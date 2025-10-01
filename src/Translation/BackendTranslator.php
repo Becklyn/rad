@@ -34,7 +34,7 @@ class BackendTranslator
     /**
      * Translates all messages.
      *
-     * @param (string|null|array)[] $messages
+     * @param (string|array|null)[] $messages
      *
      * @return (string|null)[]
      */

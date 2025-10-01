@@ -6,8 +6,6 @@ interface SortableEntityInterface extends EntityInterface
 {
     /**
      * Returns the sort order.
-     *
-     * @return int
      */
     public function getSortOrder () : ?int;
 

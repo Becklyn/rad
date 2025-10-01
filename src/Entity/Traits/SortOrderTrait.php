@@ -15,7 +15,6 @@ trait SortOrderTrait
 
 
     /**
-     * @return int
      */
     public function getSortOrder () : ?int
     {
