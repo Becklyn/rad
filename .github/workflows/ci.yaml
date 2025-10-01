@@ -23,13 +23,15 @@ jobs:
               run: composer install
 
             - name: Configure Composer Plugin Permissions
-              run: composer global config --no-plugins allow-plugins.bamarni/composer-bin-plugin true
+              run: |
+                  composer config allow-plugins.bamarni/composer-bin-plugin true
+                  composer config allow-plugins.ergebnis/composer-normalize true
 
             - name: Composer Plugins
-              run: composer global require ergebnis/composer-normalize bamarni/composer-bin-plugin php-coveralls/php-coveralls --no-interaction --prefer-dist --no-progress
+              run: composer require --dev ergebnis/composer-normalize bamarni/composer-bin-plugin --no-interaction --prefer-dist --no-progress
 
             - name: Composer Vendor-Bin Dependencies
-              run: composer bin all install --no-interaction --prefer-dist --no-progress --no-suggest
+              run: composer bin all install --no-interaction --prefer-dist --no-progress
 
             - name: Create Build Logs Directory
               run: mkdir -p build/logs
