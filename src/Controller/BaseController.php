@@ -90,7 +90,7 @@ abstract class BaseController extends AbstractController
      */
     protected function getJsonRequestData (Request $request, bool $isRequired = true) : array
     {
-        if ("json" !== $request->getContentType())
+        if ("json" !== $request->getContentTypeFormat())
         {
             if (!$isRequired)
             {
