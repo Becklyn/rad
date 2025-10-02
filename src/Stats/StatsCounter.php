@@ -116,9 +116,9 @@ class StatsCounter implements StatsCounterInterface
         }
 
         $rows = \array_map(
-            function (array $row)
+            static function (array $row) : array
             {
-                $row[0] = "<fg=yellow>{$row[0]}</>";
+                $row[0] = \sprintf('<fg=yellow>%s</>', $row[0]);
                 return $row;
             },
             $this->toArray()
@@ -130,19 +130,19 @@ class StatsCounter implements StatsCounterInterface
 
         foreach ($this->critical as $line)
         {
-            $listing[] = "<fg=red>CRITICAL</> {$line}";
+            $listing[] = '<fg=red>CRITICAL</> ' . $line;
         }
 
         foreach ($this->warnings as $line)
         {
-            $listing[] = "<fg=yellow>WARNING</> {$line}";
+            $listing[] = '<fg=yellow>WARNING</> ' . $line;
         }
 
         if ($showDebug)
         {
             foreach ($this->debug as $line)
             {
-                $listing[] = "<fg=blue>DEBUG</> {$line}";
+                $listing[] = '<fg=blue>DEBUG</> ' . $line;
             }
         }
 

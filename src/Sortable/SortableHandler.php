@@ -8,14 +8,8 @@ use Doctrine\ORM\QueryBuilder;
 
 final class SortableHandler
 {
-    private EntityRepository $repository;
-
-
-    /**
-     */
-    public function __construct (EntityRepository $repository)
+    public function __construct(private readonly EntityRepository $repository)
     {
-        $this->repository = $repository;
     }
 
 
@@ -82,7 +76,7 @@ final class SortableHandler
 
         // no $before reference element given, it should be moved to the end
         // -> just use next index
-        if (null === $before)
+        if (!$before instanceof SortableEntityInterface)
         {
             $entity->setSortOrder($index);
         }

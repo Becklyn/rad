@@ -121,12 +121,12 @@ abstract class BaseController extends AbstractController
 
             return $data;
         }
-        catch (\JsonException $e)
+        catch (\JsonException $jsonException)
         {
             throw new InvalidJsonRequestException(
-                "Invalid JSON received, error: {$e->getMessage()}",
+                'Invalid JSON received, error: ' . $jsonException->getMessage(),
                 400,
-                $e
+                $jsonException
             );
         }
     }

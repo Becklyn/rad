@@ -16,9 +16,6 @@ class SortableHandlerTest extends TestCase
     use SortableTestTrait;
 
     //region Next Sort Order
-    /**
-     * @return array
-     */
     public function provideNextSortOrder () : array
     {
         return [
@@ -31,9 +28,6 @@ class SortableHandlerTest extends TestCase
 
     /**
      * @dataProvider provideNextSortOrder
-     *
-     * @param int|null $returnValue
-     * @param int      $expected
      */
     public function testNextSortOrder (?int $returnValue, int $expected) : void
     {
@@ -61,6 +55,7 @@ class SortableHandlerTest extends TestCase
 
         self::assertSame($expected, $sortable->getNextSortOrder());
     }
+
     //endregion
 
 
@@ -110,6 +105,7 @@ class SortableHandlerTest extends TestCase
         $sortable = new SortableHandler($repository);
         $sortable->fixSortOrder([$entityExcluded1, $entityExcluded2]);
     }
+
     //endregion
 
 
@@ -198,6 +194,7 @@ class SortableHandlerTest extends TestCase
         $success = $sortable->sortElementBefore($entity, $entity);
         self::assertFalse($success);
     }
+
     //endregion
 
 
@@ -266,5 +263,6 @@ class SortableHandlerTest extends TestCase
             "t.obj = :where_value_2",
         ], $andX->getParts());
     }
+
     //endregion
 }

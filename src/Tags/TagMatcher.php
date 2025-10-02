@@ -13,17 +13,14 @@ class TagMatcher
     public const HAS_ANY_TAG = false;
     public const HAS_ALL_TAGS = true;
 
-    private array $tags;
-    private string $selector;
-    private bool $selectionMode;
+    private readonly array $tags;
+
     private bool $mustJoin = true;
 
 
-    public function __construct (iterable $tags, string $selector, bool $selectionMode = self::HAS_ALL_TAGS)
+    public function __construct (iterable $tags, private readonly string $selector, private readonly bool $selectionMode = self::HAS_ALL_TAGS)
     {
         $this->tags = self::normalizeTagList($tags);
-        $this->selectionMode = $selectionMode;
-        $this->selector = $selector;
     }
 
 
@@ -124,7 +121,7 @@ class TagMatcher
 
             throw new TagNormalizationException(\sprintf(
                 "Can't transform value of type '%s'.",
-                \is_object($tag) ? \get_class($tag) : \gettype($tag)
+                \get_debug_type($tag)
             ));
         }
 

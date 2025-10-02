@@ -17,17 +17,9 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class AjaxResponseBuilder
 {
-    /** @var TranslatorInterface */
-    protected $translator;
+    protected bool $ok;
 
-    /** @var UrlGeneratorInterface */
-    protected $urlGenerator;
-
-    /** @var bool */
-    protected $ok;
-
-    /** @var string */
-    protected $status;
+    protected ?string $status;
 
     /** @var DeferredRoute|string|null */
     protected $redirect;
@@ -51,8 +43,8 @@ class AjaxResponseBuilder
     /**
      */
     public function __construct (
-        TranslatorInterface $translator,
-        UrlGeneratorInterface $urlGenerator,
+        protected TranslatorInterface $translator,
+        protected UrlGeneratorInterface $urlGenerator,
         bool $ok,
         ?string $status = null
     )
@@ -61,9 +53,6 @@ class AjaxResponseBuilder
         {
             $status = $ok ? "ok" : "failed";
         }
-
-        $this->urlGenerator = $urlGenerator;
-        $this->translator = $translator;
         $this->ok = $ok;
         $this->status = $status;
     }

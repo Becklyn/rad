@@ -362,7 +362,7 @@ final class AjaxResponseBuilderTest extends TestCase
     /**
      * @dataProvider provideDefaultStatus
      */
-    public function testDefaultStatus (bool $ok, string $expected)
+    public function testDefaultStatus (bool $ok, string $expected): void
     {
         $builder = new AjaxResponseBuilder(
             $this->getMockBuilder(TranslatorInterface::class)->disableOriginalConstructor()->getMock(),

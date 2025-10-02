@@ -29,9 +29,6 @@ class DeferredTranslationTest extends TestCase
     }
 
 
-    /**
-     * @return iterable
-     */
     public function provideCloneWithParameters () : iterable
     {
         yield "simple merge" => [
@@ -90,7 +87,7 @@ class DeferredTranslationTest extends TestCase
      *
      * @param mixed $value
      */
-    public function testValidTranslateValue ($value, ?string $expected) : void
+    public function testValidTranslateValue (string|DeferredTranslation|null $value, ?string $expected) : void
     {
         $translator = $this->getMockBuilder(TranslatorInterface::class)
             ->getMock();
@@ -121,7 +118,7 @@ class DeferredTranslationTest extends TestCase
      *
      * @param mixed $value
      */
-    public function testInvalidTranslateValue ($value) : void
+    public function testInvalidTranslateValue (bool|int|\stdClass $value) : void
     {
         $this->expectException(InvalidTranslationActionException::class);
 
@@ -152,7 +149,7 @@ class DeferredTranslationTest extends TestCase
     /**
      * @dataProvider provideValueVariations
      */
-    public function testIsValidValue (bool $expected, $value, bool $required) : void
+    public function testIsValidValue (bool $expected, string|DeferredTranslation|int|bool|null $value, bool $required) : void
     {
         self::assertSame($expected, DeferredTranslation::isValidValue($value, $required));
     }
@@ -161,7 +158,7 @@ class DeferredTranslationTest extends TestCase
     /**
      * @dataProvider provideValueVariations
      */
-    public function testEnsureValidValue (bool $shouldBeOk, $value, bool $isOptional) : void
+    public function testEnsureValidValue (bool $shouldBeOk, string|DeferredTranslation|int|bool|null $value, bool $isOptional) : void
     {
         if (!$shouldBeOk)
         {

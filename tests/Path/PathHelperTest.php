@@ -7,10 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class PathHelperTest extends TestCase
 {
-    /**
-     * @return array
-     */
-    public function providerVariations ()
+    public function providerVariations (): array
     {
         return [
             [["a", "b", "c"], "a/b/c"],

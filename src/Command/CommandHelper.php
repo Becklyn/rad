@@ -8,14 +8,8 @@ use Doctrine\Common\EventManager;
 
 class CommandHelper
 {
-    private Profiler $profiler;
-    private EventManager $eventManager;
-
-
-    public function __construct (Profiler $profiler, EventManager $eventManager)
+    public function __construct(private readonly Profiler $profiler, private readonly EventManager $eventManager)
     {
-        $this->profiler = $profiler;
-        $this->eventManager = $eventManager;
     }
 
 

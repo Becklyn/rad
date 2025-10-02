@@ -11,14 +11,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class FormErrorMapper
 {
-    private TranslatorInterface $translator;
-
-
     /**
      */
-    public function __construct (TranslatorInterface $translator)
+    public function __construct(private readonly TranslatorInterface $translator)
     {
-        $this->translator = $translator;
     }
 
 
@@ -53,15 +49,12 @@ class FormErrorMapper
         foreach ($form->all() as $children)
         {
             $childErrors = $children->getErrors();
-            $fieldName = \ltrim("{$fieldPrefix}{$children->getName()}");
+            $fieldName = \ltrim($fieldPrefix . $children->getName());
 
             if (0 < \count($childErrors))
             {
                 $allErrors[$fieldName] = \array_map(
-                    function (FormError $error) use ($translationDomain)
-                    {
-                        return $this->translator->trans($error->getMessage(), [], $translationDomain);
-                    },
+                    fn(FormError $error) : string => $this->translator->trans($error->getMessage(), [], $translationDomain),
                     \iterator_to_array($childErrors)
                 );
             }

@@ -22,6 +22,7 @@ final class CollectionAdditionalOptionsFormExtension extends AbstractTypeExtensi
         {
             $builder->setAttribute($label, $options[$label]);
         }
+
         $builder->setAttribute("allow_sort", $options["allow_sort"]);
     }
 
@@ -34,6 +35,7 @@ final class CollectionAdditionalOptionsFormExtension extends AbstractTypeExtensi
         {
             $view->vars[$label] = $form->getConfig()->getAttribute($label);
         }
+
         $view->vars["allow_sort"] = $form->getConfig()->getAttribute("allow_sort");
     }
 

@@ -29,9 +29,6 @@ class RadTwigExtensionTest extends TestCase
     }
 
 
-    /**
-     * @return array
-     */
     public function provideClassnames () : array
     {
         return [
@@ -61,9 +58,6 @@ class RadTwigExtensionTest extends TestCase
 
     /**
      * @dataProvider provideClassnames
-     *
-     * @param array  $classnames
-     * @param string $expected
      */
     public function testClassnames (array $classnames, string $expected) : void
     {

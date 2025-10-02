@@ -6,7 +6,7 @@ use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 final class InvalidJsonRequestException extends \RuntimeException implements HttpExceptionInterface
 {
-    private int $statusCode;
+    private readonly int $statusCode;
 
 
     /**

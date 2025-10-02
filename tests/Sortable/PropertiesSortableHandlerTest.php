@@ -56,6 +56,7 @@ class PropertiesSortableHandlerTest extends TestCase
         $sortable = new PropertiesSortableHandler($repository);
         $sortable->setNextSortOrder($entity);
     }
+
     //endregion
 
 
@@ -97,5 +98,6 @@ class PropertiesSortableHandlerTest extends TestCase
         $sortable = new PropertiesSortableHandler($repository, "a");
         self::assertFalse($sortable->sortElementBefore($entity, $before));
     }
+
     //endregion
 }

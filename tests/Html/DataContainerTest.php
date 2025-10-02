@@ -20,6 +20,7 @@ class DataContainerTest extends TestCase
             $dataContainer->renderToHtml(["<b>" => 2], "test")
         );
     }
+
     /**
      *
      */

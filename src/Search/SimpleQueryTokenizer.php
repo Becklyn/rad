@@ -14,7 +14,7 @@ final class SimpleQueryTokenizer
     /**
      * Transforms the given raw query to a mysql-ready and queryable query string
      */
-    public function transformToQuery (string $query, bool $mode = self::MODE_PREFIX)
+    public function transformToQuery (string $query, bool $mode = self::MODE_PREFIX) : string
     {
         $query = \trim($query);
 

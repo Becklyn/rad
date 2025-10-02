@@ -12,13 +12,11 @@ final class SimpleEntitySearchHelper
 {
     public const MODE_PREFIX = SimpleQueryTokenizer::MODE_PREFIX;
     public const MODE_EVERYWHERE = SimpleQueryTokenizer::MODE_EVERYWHERE;
-    private SimpleQueryTokenizer $tokenizer;
 
     /**
      */
-    public function __construct (SimpleQueryTokenizer $tokenizer)
+    public function __construct(private readonly SimpleQueryTokenizer $tokenizer)
     {
-        $this->tokenizer = $tokenizer;
     }
 
 
