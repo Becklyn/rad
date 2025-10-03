@@ -13,10 +13,12 @@ use Symfony\Component\PropertyAccess\PropertyAccessor;
  */
 final class PropertiesSortableHandler
 {
-    private SortableHandler $nested;
+    private readonly SortableHandler $nested;
+
     /** @var string[] */
-    private array $properties;
-    private PropertyAccessor $accessor;
+    private readonly array $properties;
+
+    private readonly PropertyAccessor $accessor;
 
 
     /**

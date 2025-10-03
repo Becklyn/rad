@@ -6,12 +6,8 @@ use Symfony\Component\HttpKernel\Profiler\Profiler as SymfonyProfiler;
 
 class Profiler
 {
-    private ?SymfonyProfiler $profiler;
-
-
-    public function __construct (?SymfonyProfiler $profiler)
+    public function __construct(private readonly ?SymfonyProfiler $profiler)
     {
-        $this->profiler = $profiler;
     }
 
 

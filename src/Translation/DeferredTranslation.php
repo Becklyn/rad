@@ -18,21 +18,14 @@ class DeferredTranslation
     public const OPTIONAL = true;
     public const REQUIRED = false;
 
-    private string $id;
-    private array $parameters;
-    private string $domain;
-
 
     /**
      * @param string $id         Translation key #TranslationKey
      * @param array  $parameters Translation parameters
      * @param string $domain     Translation domain #TranslationDomain
      */
-    public function __construct (string $id, array $parameters = [], string $domain = "messages")
+    public function __construct(private readonly string $id, private array $parameters = [], private readonly string $domain = "messages")
     {
-        $this->id = $id;
-        $this->parameters = $parameters;
-        $this->domain = $domain;
     }
 
 
@@ -101,7 +94,7 @@ class DeferredTranslation
 
         throw new InvalidTranslationActionException(\sprintf(
             "Can't translate value of type '%s', only DeferredTranslations, strings and null are allowed.",
-            \is_object($value) ? \get_class($value) : \gettype($value)
+            \get_debug_type($value)
         ));
     }
 
@@ -177,5 +170,6 @@ class DeferredTranslation
     {
         return new self($id, $parameters, "backend");
     }
+
     //endregion
 }

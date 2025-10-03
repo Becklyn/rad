@@ -9,20 +9,16 @@ use Becklyn\Rad\Exception\InvalidPaginationException;
  */
 class Pagination
 {
+    private readonly int $numberOfItems;
+    private readonly int $perPage;
+    private readonly int $maxPage;
+
     /**
      * WARNING: this value is unsanitized. You should never use it except for when passing it to a pagination with a
      * different number of elements. Always use the getter, which returns the normalized value. Also use the normalized
      * getter in internal methods to have correct calculation.
      */
-    private int $currentPage;
-    private int $numberOfItems;
-    private int $perPage;
-    private int $maxPage;
-
-
-    /**
-     */
-    public function __construct (int $currentPage, int $perPage = 50, int $numberOfItems = 0)
+    public function __construct (private readonly int $currentPage, int $perPage = 50, int $numberOfItems = 0)
     {
         if ($perPage <= 0)
         {
@@ -33,11 +29,9 @@ class Pagination
         {
             throw new InvalidPaginationException("Pagination can only be created for a positive number of items");
         }
-
-        $this->currentPage = $currentPage;
         $this->numberOfItems = $numberOfItems;
         $this->perPage = $perPage;
-        $this->maxPage = (int) \max(1, (int) \ceil($numberOfItems / $perPage));
+        $this->maxPage = \max(1, (int) \ceil($numberOfItems / $perPage));
     }
 
 
@@ -144,7 +138,6 @@ class Pagination
 
 
     /**
-     * @return Pagination
      */
     public function withNumberOfItems (int $numberOfItems) : self
     {

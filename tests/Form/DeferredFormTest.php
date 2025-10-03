@@ -32,9 +32,6 @@ final class DeferredFormTest extends TestCase
     }
 
 
-    /**
-     * @return iterable
-     */
     public function provideCloneWithOptions () : iterable
     {
         yield "simple merge" => [

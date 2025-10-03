@@ -7,9 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class PaginationTest extends TestCase
 {
-    /**
-     * @return array
-     */
     public function provideValidMaxPage () : array
     {
         return [
@@ -26,10 +23,6 @@ class PaginationTest extends TestCase
 
     /**
      * @dataProvider provideValidMaxPage
-     *
-     * @param int $numberOfItems
-     * @param int $itemsPerPage
-     * @param int $expectedMaxPage
      */
     public function testValidMaxPage (int $numberOfItems, int $itemsPerPage, int $expectedMaxPage) : void
     {
@@ -38,9 +31,6 @@ class PaginationTest extends TestCase
     }
 
 
-    /**
-     * @return array
-     */
     public function provideInvalid () : array
     {
         return [
@@ -53,9 +43,6 @@ class PaginationTest extends TestCase
 
     /**
      * @dataProvider provideInvalid
-     *
-     * @param int $numberOfItems
-     * @param int $itemsPerPage
      */
     public function testInvalid (int $numberOfItems, int $itemsPerPage) : void
     {
@@ -96,9 +83,6 @@ class PaginationTest extends TestCase
     }
 
 
-    /**
-     * @return array
-     */
     public function provideCurrent () : array
     {
         return [

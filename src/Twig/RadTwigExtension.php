@@ -14,27 +14,15 @@ use Twig\TwigFunction;
 
 class RadTwigExtension extends AbstractExtension
 {
-    private DataContainer $dataContainer;
-    private TranslatorInterface $translator;
-    private ?LinkableHandlerInterface $linkableHandler;
-
-
-    public function __construct (
-        DataContainer $dataContainer,
-        TranslatorInterface $translator,
-        ?LinkableHandlerInterface $linkableHandler = null
-    )
+    public function __construct(private readonly DataContainer $dataContainer, private readonly TranslatorInterface $translator, private readonly ?LinkableHandlerInterface $linkableHandler = null)
     {
-        $this->dataContainer = $dataContainer;
-        $this->translator = $translator;
-        $this->linkableHandler = $linkableHandler;
     }
 
 
     public function appendToKey (array $map, string $key, string $append) : array
     {
         $value = $map[$key] ?? "";
-        $map[$key] = \trim("{$value} {$append}");
+        $map[$key] = \trim(\sprintf('%s %s', $value, $append));
         return $map;
     }
 
@@ -104,9 +92,9 @@ class RadTwigExtension extends AbstractExtension
 
             return $this->linkableHandler->generateUrl($link);
         }
-        catch (UnexpectedTypeException $e)
+        catch (UnexpectedTypeException $unexpectedTypeException)
         {
-            throw new \LogicException("Could not generate URL for LinkableInterface due to an error.", 500, $e);
+            throw new \LogicException("Could not generate URL for LinkableInterface due to an error.", 500, $unexpectedTypeException);
         }
     }
 

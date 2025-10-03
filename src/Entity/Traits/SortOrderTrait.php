@@ -9,15 +9,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 trait SortOrderTrait
 {
-    /**
-     * @ORM\Column(name="sort_order", type="integer")
-     */
+    #[ORM\Column(name: 'sort_order', type: 'integer')]
     private ?int $sortOrder = null;
 
 
 
     /**
-     * @return int
      */
     public function getSortOrder () : ?int
     {

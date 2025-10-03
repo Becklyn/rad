@@ -7,9 +7,6 @@ namespace Becklyn\Rad\Exception;
  */
 class LabeledEntityRemovalBlockedException extends EntityRemovalBlockedException implements LabeledExceptionInterface
 {
-    /** @var string */
-    private $frontendMessage;
-
     /**
      * {@inheritdoc}
      *
@@ -18,15 +15,14 @@ class LabeledEntityRemovalBlockedException extends EntityRemovalBlockedException
      * @param object|object[] $entities
      * @param string          $frontendMessage the #TranslationKey to use
      */
-    public function __construct ($entities, string $message, string $frontendMessage, ?\Throwable $previous = null)
+    public function __construct ($entities, string $message, private readonly string $frontendMessage, ?\Throwable $previous = null)
     {
         parent::__construct($entities, $message, $previous);
-        $this->frontendMessage = $frontendMessage;
     }
 
     /**
      */
-    public function getFrontendMessage ()
+    public function getFrontendMessage () : string
     {
         return $this->frontendMessage;
     }

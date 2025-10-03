@@ -10,27 +10,17 @@ use Doctrine\ORM\QueryBuilder;
 
 trait SortableTestTrait
 {
-    /**
-     * @param int      $id
-     * @param int|null $sortOrder
-     *
-     * @return SortableEntityInterface
-     */
     private function createEntity (int $id, ?int $sortOrder = null) : SortableEntityInterface
     {
         return new class ($id, $sortOrder) implements SortableEntityInterface
         {
-            private int $id;
-            private ?int $sortOrder;
 
-            public function __construct (int $id, ?int $sortOrder = null)
+            public function __construct(private readonly int $id, private ?int $sortOrder = null)
             {
-                $this->id = $id;
-                $this->sortOrder = $sortOrder;
             }
 
 
-            public function getId () : ?int
+            public function getId () : int
             {
                 return $this->id;
             }
@@ -55,33 +45,16 @@ trait SortableTestTrait
         };
     }
 
-    /**
-     * @param int      $id
-     * @param int|null $sortOrder
-     *
-     * @return SortableEntityInterface
-     */
     private function createEntityWithProperties (int $id, $a, $b, $c, ?int $sortOrder = null) : SortableEntityInterface
     {
         return new class ($id, $sortOrder, $a, $b, $c) implements SortableEntityInterface
         {
-            private int $id;
-            private ?int $sortOrder;
-            private $a;
-            private $b;
-            private $c;
-
-            public function __construct (int $id, ?int $sortOrder, $a, $b, $c)
+            public function __construct(private readonly int $id, private ?int $sortOrder, private $a, private $b, private $c)
             {
-                $this->id = $id;
-                $this->sortOrder = $sortOrder;
-                $this->a = $a;
-                $this->b = $b;
-                $this->c = $c;
             }
 
 
-            public function getId () : ?int
+            public function getId () : int
             {
                 return $this->id;
             }
@@ -122,11 +95,6 @@ trait SortableTestTrait
     }
 
 
-    /**
-     * @param int $number
-     *
-     * @return array
-     */
     private function createEntities (int $number) : array
     {
         $result = [];
@@ -142,8 +110,6 @@ trait SortableTestTrait
 
     /**
      * @param SortableEntityInterface[] $entities
-     *
-     * @return array
      */
     private function mapEntities (array $entities) : array
     {
@@ -188,7 +154,7 @@ trait SortableTestTrait
 
         \usort(
             $entities,
-            static fn (SortableEntityInterface $left, SortableEntityInterface $right) => $left->getSortOrder() - $right->getSortOrder()
+            static fn (SortableEntityInterface $left, SortableEntityInterface $right): int => $left->getSortOrder() - $right->getSortOrder()
         );
 
         $query

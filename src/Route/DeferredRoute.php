@@ -21,10 +21,7 @@ class DeferredRoute implements LinkableInterface
 {
     public const OPTIONAL = true;
     public const REQUIRED = false;
-
-    private string $route;
     private array $parameters;
-    private int $referenceType;
 
 
     /**
@@ -32,11 +29,9 @@ class DeferredRoute implements LinkableInterface
      * @param array<string, string|int|float|EntityInterface|bool|null> $parameters    the parameters required for generating the route
      * @param int                                                       $referenceType The reference type to generate for this route
      */
-    public function __construct (string $route, array $parameters = [], int $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH)
+    public function __construct (private readonly string $route, array $parameters = [], private readonly int $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH)
     {
-        $this->route = $route;
         $this->parameters = $this->normalizeParameters($parameters);
-        $this->referenceType = $referenceType;
     }
 
 
@@ -121,7 +116,7 @@ class DeferredRoute implements LinkableInterface
 
         throw new InvalidRouteActionException(\sprintf(
             "Can't generate route for value of type '%s', only DeferredRoutes, strings and null are allowed.",
-            \is_object($value) ? \get_class($value) : \gettype($value)
+            \get_debug_type($value)
         ));
     }
 

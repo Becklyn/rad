@@ -9,7 +9,7 @@ namespace Becklyn\Rad\Exception;
 class EntityRemovalBlockedException extends \InvalidArgumentException implements RadException
 {
     /** @var object[] */
-    private array $entities;
+    private readonly array $entities;
 
 
     /**

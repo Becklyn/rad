@@ -15,7 +15,7 @@ final class UnexpectedTypeException extends \InvalidArgumentException implements
         parent::__construct(\sprintf(
             'Expected argument of type %s, "%s" given',
             $expectedType,
-            \is_object($value) ? \get_class($value) : \gettype($value)
+            \get_debug_type($value)
         ));
     }
 }

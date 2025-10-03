@@ -31,9 +31,6 @@ class DeferredRouteTest extends TestCase
     }
 
 
-    /**
-     * @return iterable
-     */
     public function provideCloneWithParameters () : iterable
     {
         yield "simple merge" => [
@@ -80,7 +77,7 @@ class DeferredRouteTest extends TestCase
     {
         $entity = new class implements EntityInterface
         {
-            public function getId () : ?int { return 123; }
+            public function getId () : int { return 123; }
             public function isNew () : bool { return false; }
         };
 
@@ -106,13 +103,13 @@ class DeferredRouteTest extends TestCase
     {
         $entity1 = new class implements EntityInterface
         {
-            public function getId () : ?int { return 123; }
+            public function getId () : int { return 123; }
             public function isNew () : bool { return false; }
         };
 
         $entity2 = new class implements EntityInterface
         {
-            public function getId () : ?int { return 234; }
+            public function getId () : int { return 234; }
             public function isNew () : bool { return false; }
         };
 
@@ -156,7 +153,7 @@ class DeferredRouteTest extends TestCase
      *
      * @param mixed $value
      */
-    public function testValidRouteValue ($value, ?string $expected) : void
+    public function testValidRouteValue (string|DeferredRoute|null $value, ?string $expected) : void
     {
         $router = $this->getMockBuilder(RouterInterface::class)
             ->getMock();
@@ -187,7 +184,7 @@ class DeferredRouteTest extends TestCase
      *
      * @param mixed $value
      */
-    public function testInvalidRouteValue ($value) : void
+    public function testInvalidRouteValue (bool|int|\stdClass $value) : void
     {
         $this->expectException(InvalidRouteActionException::class);
 
@@ -218,7 +215,7 @@ class DeferredRouteTest extends TestCase
     /**
      * @dataProvider provideValueVariations
      */
-    public function testIsValid (bool $expected, $value, bool $isOptional) : void
+    public function testIsValid (bool $expected, string|DeferredRoute|int|bool|null $value, bool $isOptional) : void
     {
         self::assertSame($expected, DeferredRoute::isValidValue($value, $isOptional));
     }
@@ -227,7 +224,7 @@ class DeferredRouteTest extends TestCase
     /**
      * @dataProvider provideValueVariations
      */
-    public function testEnsureValid (bool $shouldBeOk, $value, bool $isOptional) : void
+    public function testEnsureValid (bool $shouldBeOk, string|DeferredRoute|int|bool|null $value, bool $isOptional) : void
     {
         if (!$shouldBeOk)
         {

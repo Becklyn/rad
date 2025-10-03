@@ -4,14 +4,12 @@ namespace Becklyn\Rad\Stats;
 
 final class NestedStatsCounter implements StatsCounterInterface
 {
-    private StatsCounterInterface $base;
-    private string $prefix;
+    private readonly string $prefix;
 
     /**
      */
-    public function __construct (StatsCounterInterface $base, string $prefix)
+    public function __construct (private readonly StatsCounterInterface $base, string $prefix)
     {
-        $this->base = $base;
         $this->prefix = \rtrim($prefix) . " ";
     }
 

@@ -10,16 +10,10 @@ use Symfony\Component\Form\FormInterface;
  */
 final class DeferredForm
 {
-    private string $type;
-    private array $options;
-
-
     /**
      */
-    public function __construct (string $type, array $options = [])
+    public function __construct(private readonly string $type, private array $options = [])
     {
-        $this->type = $type;
-        $this->options = $options;
     }
 
 
@@ -39,9 +33,6 @@ final class DeferredForm
     }
 
 
-    /**
-     * @return static
-     */
     public function withOptions (array $options) : self
     {
         $modified = clone $this;

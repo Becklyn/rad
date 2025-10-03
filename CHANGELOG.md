@@ -1,3 +1,10 @@
+9.0.0
+=====
+
+*   (breaking) Minimum PHP version increased to 8.1.
+*   (breaking) All Doctrine ORM annotations converted to PHP 8 attributes.
+
+
 8.6.1
 =====
 
