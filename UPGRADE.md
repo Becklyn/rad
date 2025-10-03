@@ -3,7 +3,6 @@
 
 *   The minimum PHP version has been increased from **7.4** to **8.1**.
 *   All Doctrine ORM annotations have been converted to PHP 8 attributes.
-*   Update your entities to use attributes instead of annotations (e.g., `#[ORM\Entity]` instead of `@ORM\Entity`).
 
 
 7.x to 8.0
